@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back_ground"
+    tools:context=".SeperatorActivity">
+
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="256dp"
+        android:layout_height="257dp"
+        android:layout_marginEnd="236dp"
+        android:layout_marginBottom="536dp"
+        android:rotation="15"
+        android:src="@drawable/artboard_1_copy_3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="218dp"
+        android:layout_height="249dp"
+        android:layout_marginStart="268dp"
+        android:layout_marginBottom="484dp"
+        android:rotation="-15"
+        android:src="@drawable/artboard_1_copy_4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="224dp"
+        android:layout_height="215dp"
+        android:layout_marginEnd="264dp"
+        android:layout_marginBottom="300dp"
+        android:src="@drawable/artboard_1_copy_2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <LinearLayout
+        android:layout_width="369dp"
+        android:layout_height="567dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.447"
+        android:layout_marginTop="30dp">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="325dp"
+            android:layout_height="342dp"
+
+
+            android:src="@drawable/book_a_bite_logo" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:fontFamily="@font/vintage_rovery"
+            android:gravity="center"
+            android:text="Are you?"
+            android:textSize="35dp" />
+
+        <Button
+            android:id="@+id/clientBtn"
+            android:layout_width="250dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/seperator_btn"
+            android:fontFamily="@font/vintage_rovery"
+            android:hapticFeedbackEnabled="true"
+            android:padding="10dp"
+            android:text="Client"
+            android:textColor="#000000"
+            android:textColorHint="#AB7D87"
+            android:textColorLink="#FFFFFF"
+            android:textSize="18dp" />
+
+        <Button
+            android:id="@+id/managerBtn"
+            android:layout_width="250dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/seperator_btn"
+            android:fontFamily="@font/vintage_rovery"
+            android:hapticFeedbackEnabled="true"
+            android:padding="10dp"
+            android:text="Restaurant Manager"
+            android:textColor="#000000"
+            android:textColorHint="#AB7D87"
+            android:textSize="18dp" />
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="bg_base_color1">#FFF8E3</color>
+    <color name="bg_base_color2">#F3D7CA</color>
+    <color name="main_font_color">#AC7D88</color>
+
+    <color name="beige">#FFF8E3</color>
+    <color name="darkpink">#643843</color>
+    <color name="lightpink">#AA7C87</color>
+    <color name="endclr">#F3D7CA</color>
+    <color name="startclr">#FFF8E3</color>
+
+    <color name="second_font_color">#643843</color>
+    <color name="add_font_color">#503C3d</color>
+
+</resources>

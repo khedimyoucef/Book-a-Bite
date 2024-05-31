@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" >
+    <!-- delcare permission requests here -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/book_a_bite_logo"
+        android:label="Book a Bite"
+        android:roundIcon="@drawable/book_a_bite_logo"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyApplication"
+        tools:targetApi="31" >
+
+
+
+
+        <activity
+            android:name=".SplashScreenActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" >
+
+
+        <intent-filter> <!-- to set it as the launcher activity -->
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".SeparatorActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name=".RegisterPageActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".RestaurantCheckInActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".AccountActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+            <activity
+                android:name=".LoginActivity"
+                android:exported="true"
+                android:screenOrientation="portrait" />
+
+
+            <activity
+                android:name=".MainActivity"
+                android:exported="true"
+                android:screenOrientation="portrait" />
+
+            <activity android:name=".MapsActivity"
+                android:exported="true"
+                android:screenOrientation="portrait"/>
+
+            <activity android:name=".RestaurantActivity"
+                android:exported="true"
+                android:screenOrientation="portrait"/>
+
+
+
+            <activity android:name=".FillMenu"
+                android:exported="true"
+                android:screenOrientation="portrait"/>
+
+
+        <activity
+            android:name=".restaurantHome"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+            <!--google api key -->
+            <meta-data android:name="com.google.android.geo.API_KEY"
+                android:value="AIzaSyAu0nAy4Rrbj2FSlnt2a3TrjNS63ZYtNQU"
+                />
+                <!--android:value="AIzaSyDt4xfB1gWSfKHTcxcW_NM7oHU0ZLqyRDs"
+                    android:value="AIzaSyAu0nAy4Rrbj2FSlnt2a3TrjNS63ZYtNQU"
+                 -->
+
+        </application>
+
+
+
+</manifest>

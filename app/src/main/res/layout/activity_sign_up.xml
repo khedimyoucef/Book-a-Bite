@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".signUpActivity"
+    android:background="@drawable/bg">
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="268dp"
+        android:layout_height="287dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/logo" />
+
+    <EditText
+        android:id="@+id/inputEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/inputbg"
+        android:drawableLeft="@drawable/email"
+        android:drawablePadding="12dp"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="text"
+        android:padding="15dp"
+        android:textColor="@color/darkpink"
+        android:textColorHint="@color/darkpink"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <EditText
+        android:id="@+id/inputUserName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/inputbg"
+        android:drawableLeft="@drawable/account"
+        android:drawablePadding="12dp"
+        android:ems="10"
+        android:hint="UserName"
+        android:inputType="text"
+        android:padding="15dp"
+        android:textColor="@color/darkpink"
+        android:textColorHint="@color/darkpink"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/inputEmail"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/inputEmail"
+        app:layout_constraintTop_toBottomOf="@+id/inputEmail" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/signUpbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/buttonbg"
+        android:backgroundTint="@color/darkpink"
+        android:text="Sign Up"
+        android:textColor="@color/startclr"
+        android:textColorHighlight="@color/beige"
+        android:textColorHint="@color/beige"
+        android:textColorLink="@color/beige"
+        app:layout_constraintEnd_toEndOf="@+id/inputPassword"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/inputPassword"
+        app:layout_constraintTop_toBottomOf="@+id/inputPassword"
+        app:rippleColor="@color/darkpink" />
+
+    <TextView
+        android:id="@+id/alreadyHaveAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Already Have an account ?"
+        android:textColor="@color/darkpink"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/signUpbtn"
+        app:layout_constraintStart_toStartOf="@+id/signUpbtn"
+        app:layout_constraintTop_toBottomOf="@+id/signUpbtn" />
+
+    <EditText
+        android:id="@+id/inputPassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/inputbg"
+        android:drawableLeft="@drawable/password"
+        android:drawablePadding="12dp"
+        android:ems="10"
+        android:hint="*******"
+        android:inputType="textPassword"
+        android:padding="15dp"
+        android:textColorHint="@color/darkpink"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/inputUserName"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/inputUserName"
+        app:layout_constraintTop_toBottomOf="@+id/inputUserName" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center">
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardMaxElevation="8dp"
+        app:cardCornerRadius="16dp"
+        app:cardUseCompatPadding="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Salad 1"
+                    android:layout_marginLeft="10dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/darkpink"
+                    android:textSize="21dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ingredients for salad"
+                    android:layout_marginLeft="8dp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/restaurantImage"
+                    android:layout_weight="4"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/plate">
+
+                </ImageView>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>
