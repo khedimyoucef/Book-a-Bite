@@ -42,7 +42,7 @@
 
                 <TextView
                     android:id="@+id/date"
-                    android:layout_width="162dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="50dp"
                     android:background="@drawable/inputbg"
@@ -137,23 +137,24 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/NbrPeople"
+                    android:id="@+id/reservedSeats"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
                     android:layout_marginTop="50dp"
                     android:background="@drawable/inputbg"
                     android:drawableLeft="@drawable/profile"
                     android:drawablePadding="15dp"
                     android:paddingLeft="15dp"
-                    android:text="Number of people"
+                    android:hint="Number of people"
                     android:textColor="@color/darkpink"
                     android:textSize="27dp"
+                    android:inputType="number"
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/nextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/buttonbg"

@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser user = mAuth.getCurrentUser();
         if(user != null && user.isEmailVerified() ){
-            Intent i = new Intent(LoginActivity.this, AccountActivity.class);
+            Intent i = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(i);
             finish();
         }
@@ -138,7 +138,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                         Toast.makeText(LoginActivity.this, "Successful login", Toast.LENGTH_SHORT).show();
                                         if (prefs.getBoolean(CLIENT_KEY,true)){//if the user is a client launch the client side
-                                            Intent i = new Intent(LoginActivity.this, AccountActivity.class);
+                                            Intent i = new Intent(LoginActivity.this, MainActivity.class);
                                             startActivity(i);
                                             finish();}
                                         else if (!(prefs.getBoolean(CLIENT_KEY,true))){//launch the manager side

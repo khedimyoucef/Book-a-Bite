@@ -83,12 +83,28 @@
             <activity android:name=".FillMenu"
                 android:exported="true"
                 android:screenOrientation="portrait"/>
+            <activity android:name=".TableReservationAcivity"
+                android:exported="true"
+                android:screenOrientation="portrait"/>
+            <activity android:name=".FoodReservationActivity"
+                android:exported="true"
+                android:screenOrientation="portrait"/>
 
+        <activity android:name=".SummaryActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".restaurantHome"
             android:exported="true"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".PlateDetails"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+
+
             <!--google api key -->
             <meta-data android:name="com.google.android.geo.API_KEY"
                 android:value="AIzaSyAu0nAy4Rrbj2FSlnt2a3TrjNS63ZYtNQU"

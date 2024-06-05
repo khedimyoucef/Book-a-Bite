@@ -143,6 +143,7 @@
 
             intent.putExtra("restaurantName",managerObject.getRestaurantName()); // the position of the manager object in the list is set in the adapter class
             intent.putExtra("restaurantID",managerObject.getUserId());
+            PublicData.currentRestaurantId = managerObject.getUserId();
 
             startActivity(intent);
             // we can't kill the fragment using finish(); here cause it's not an activity

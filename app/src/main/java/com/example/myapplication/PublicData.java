@@ -6,6 +6,9 @@ import android.content.SharedPreferences;
 
 import com.google.android.gms.maps.GoogleMap;
 import android.content.SharedPreferences;
+
+import java.util.ArrayList;
+
 public abstract class PublicData {
 
 
@@ -15,6 +18,10 @@ public abstract class PublicData {
     private static String loggedEmail;
     private static double longitude;
     private static double latitude;
+
+    public static String currentRestaurantId;
+
+    public static ArrayList<Dish> sharedMenuList;
     public static GoogleMap googleMap;//google map instance to be used throughout the app
 
     public static GoogleMap getGoogleMap(){
@@ -44,6 +51,11 @@ public abstract class PublicData {
     public static void setLoggedEmail(String loggedEmail) {
         PublicData.loggedEmail = loggedEmail;
     }
+
+    public static Order currentOrder;
+
+
+
 
 
 }

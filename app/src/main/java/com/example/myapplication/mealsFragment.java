@@ -193,7 +193,16 @@ private restaurantMenuRecyclerViewAdapter adapter;
 
 
 
+        bookNowbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                PublicData.sharedMenuList = menuItemArrayList;
+                Intent intent = new Intent(getContext(), TableReservationAcivity.class);
+
+                startActivity(intent);
+            }
+        });
 
 }
 

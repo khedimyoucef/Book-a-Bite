@@ -1,4 +1,5 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -6,18 +7,69 @@
     android:background="@drawable/bg"
     tools:context=".reservationsFragment">
 
-
     <TextView
-
-        android:layout_width="wrap_content"
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="reservations"
-        android:textSize="34sp"
+        android:background="@drawable/pink_bg"
+        android:padding="50dp"
+        android:paddingStart="100dp"
+        android:text="Upcoming Reservations"
+        android:textColor="@color/darkpink"
+        android:textSize="32dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Wrap the elements to be replaced in a LinearLayout -->
+    <LinearLayout
+        android:id="@+id/linear_layout_to_replace"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/textView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Your content for LinearLayout -->
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="230dp"
+            android:layout_height="247dp"
+            android:src="@drawable/logo"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:textColor="@color/darkpink"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:text="You haven’t booked with us yet !" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="With bookAbite you can make a reservation and find the best restaurant in the area"
+            android:textColor="@color/lightpink"
+            android:textStyle="bold"
+            android:paddingStart="10dp" />
+
+    </LinearLayout>
+
+    <!-- RecyclerView to replace the LinearLayout -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/textView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

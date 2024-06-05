@@ -8,18 +8,25 @@ import androidx.annotation.NonNull;
 public class Dish implements Parcelable {
 
     private String name;
-    private String Category;
+    private String category;
     private String description;
     private double price;
     private String img;
 
-
-    public Dish(){
+    public Dish() {
         // Default constructor required for Firebase deserialization
     }
-    public Dish(String name, String Category, String description, double price, String img) {
+
+    public Dish(String name, String category, String description, double price) {
         this.name = name;
-        this.Category = Category;
+        this.category = category;
+        this.description = description;
+        this.price = price;
+    }
+
+    public Dish(String name, String category, String description, double price, String img) {
+        this.name = name;
+        this.category = category;
         this.description = description;
         this.price = price;
         this.img = img;
@@ -34,11 +41,11 @@ public class Dish implements Parcelable {
     }
 
     public String getCategory() {
-        return Category;
+        return category;
     }
 
-    public void setCategory(String Category) {
-        this.Category = Category;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getDescription() {
@@ -72,13 +79,21 @@ public class Dish implements Parcelable {
 
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
-        dest.writeString(Category);
         dest.writeString(name);
+        dest.writeString(category);
         dest.writeString(description);
         dest.writeDouble(price);
         dest.writeString(img);
-
     }
+
+    protected Dish(Parcel in) {
+        name = in.readString();
+        category = in.readString();
+        description = in.readString();
+        price = in.readDouble();
+        img = in.readString();
+    }
+
     public static final Creator<Dish> CREATOR = new Creator<Dish>() {
         @Override
         public Dish createFromParcel(Parcel in) {
@@ -90,14 +105,4 @@ public class Dish implements Parcelable {
             return new Dish[size];
         }
     };
-
-    private Dish(Parcel in) {
-        name = in.readString();
-       Category = in.readString();
-      description = in.readString();
-      price=in.readDouble();
-      img=in.readString();
-
-    }
-
 }

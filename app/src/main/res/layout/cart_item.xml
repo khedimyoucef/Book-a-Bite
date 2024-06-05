@@ -53,30 +53,30 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/add"
+                        android:id="@+id/removeFromCart"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="20dp"
-                        android:padding="5dp"
-                        android:text="ADD"
-                        android:textStyle="bold"
                         android:background="@drawable/buttonbg"
-                        android:textColor="@color/lightpink"/>
+                        android:padding="5dp"
+                        android:text="Remove from cart"
+                        android:textColor="@color/lightpink"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/dishPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="4dp"
                         android:padding="5dp"
-                        android:text="700"
-                        android:layout_marginEnd="4dp"/>
+                        android:text="1" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="DA"
+                        android:text="X"
                         android:textColor="@color/darkpink"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
 

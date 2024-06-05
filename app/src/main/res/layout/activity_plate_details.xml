@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout6"
-        android:layout_width="408dp"
+        android:layout_width="match_parent"
         android:layout_height="323dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,19 +17,21 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/plateId"
-            android:layout_width="300dp"
+            android:id="@+id/plateImage"
+            android:layout_width="250dp"
             android:layout_height="250dp"
             android:layout_marginLeft="50dp"
             android:layout_marginTop="30dp"
-            android:src="@drawable/plate" />
+            android:src="@drawable/plate"
+            android:layout_gravity=""/>
 
         <TextView
+            android:id="@+id/dishName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="125dp"
             android:layout_marginTop="12dp"
-            android:text="Salad one"
+            android:text="dish name"
             android:textColor="@color/darkpink"
             android:textSize="28dp"
             android:textStyle="bold" />
@@ -37,47 +39,51 @@
 
     <LinearLayout
         android:id="@+id/linearLayout7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
         android:layout_marginTop="18dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
+        android:gravity="center">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/minusBtn"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:background="@drawable/buttonbg"
             android:text="-"
-            android:id="@+id/minusBtn"
             android:textColor="@color/beige"
             android:textSize="30dp"
             android:textStyle="bold" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/quantity"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:background="@drawable/inputbg"
+            android:gravity="center"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:text="1"
-            android:id="@+id/plateNbrTv"
             android:textColor="@color/darkpink"
-            android:textSize="35dp" />
+            android:textSize="35dp"
+            />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/plusBtn"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:background="@drawable/buttonbg"
             android:text="+"
-            android:id="@+id/plusBtn"
             android:textColor="@color/beige"
             android:textSize="30dp"
             android:textStyle="bold" />
     </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/linearLayout8"
@@ -98,10 +104,10 @@
             tools:layout_editor_absoluteY="434dp" />
 
         <TextView
+            android:id="@+id/price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="70"
-            android:id="@+id/mealPriceTv"
+            android:text="dish price"
             android:textSize="30dp"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="155dp"
@@ -118,6 +124,22 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+      app:layout_constraintTop_toBottomOf="@id/linearLayout8"
+        app:layout_constraintBottom_toTopOf="@id/linearLayout12"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/addToCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="add to cart"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
@@ -133,7 +155,7 @@
             android:background="@drawable/buttonbg"
             android:padding="15dp"
             android:text="Keep ordering"
-            android:id="@+id/keepOrderBtn"
+            android:id="@+id/keepOrderingBtn"
             android:textColor="@color/beige"
             android:textSize="18dp"
             android:textStyle="bold" />
