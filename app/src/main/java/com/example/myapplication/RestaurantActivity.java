@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,16 +46,25 @@ public class RestaurantActivity extends AppCompatActivity {
         restaurantName.setText(getIntent().getStringExtra("restaurantName"));
 
         restaurantID = getIntent().getStringExtra("restaurantID");
+
         //by default the when the activity launches the reviewFragment is opened first
         //getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout,new reviewFragment()).commit();
         //or
+
         replaceFragment(new reviewFragment());
         //TODO: add the appropriate checks for the fragment replacment
         mealsFragmentbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             
             public void onClick(View view) {
-                replaceFragment(new menuFragment());
+                Fragment mealsFragment = new mealsFragment();
+                // Create a bundle to pass the string
+                Bundle bundle = new Bundle();
+                bundle.putString("restaurantIdKey", restaurantID);
+
+                // Set the arguments on the fragment
+                mealsFragment.setArguments(bundle);
+                replaceFragment(mealsFragment);
 
             }
         });

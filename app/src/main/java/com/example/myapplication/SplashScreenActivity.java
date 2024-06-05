@@ -50,6 +50,10 @@ public static final String CLIENT_KEY = "isClient";
 
         //for testing the Recycler View
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+
+
+
+        /*
         //ManagerClass managerObject = new ManagerClass(username, email, phoneNumber, password, user.getUid(), restaurantName);
         ManagerClass managerObject1 = new ManagerClass("JohnDoe", "johndoe@example.com", "+1234567890", "password123", "uid1", "Restaurant A");
         ManagerClass managerObject2 = new ManagerClass("AliceSmith", "alicesmith@example.com", "+1987654321", "pass456", "uid2", "Restaurant B");
@@ -129,6 +133,11 @@ mDatabase.child("managers").child("managerObject9").setValue(managerObject9);
         mDatabase.child("managers").child("managerObject1").child("menu").push().setValue(new Dish("Pizza", "Main Course", "Delicious cheese pizza", 9.99, "url_to_image1"));
         mDatabase.child("managers").child("managerObject1").child("menu").push().setValue(new Dish("Burger", "Main Course", "Juicy beef burger", 5.99, "url_to_image2"));
         mDatabase.child("managers").child("managerObject1").child("menu").push().setValue(new Dish("Pasta", "Main Course", "Creamy Alfredo pasta", 7.99, "url_to_image3"));
+        mDatabase.child("managers").child("managerObject1").child("menu").push().setValue(new Dish("Pizza", "Main Course", "Delicious cheese pizza", 9.99, "url_to_image1"));
+        mDatabase.child("managers").child("managerObject1").child("menu").push().setValue(new Dish("Burger", "Main Course", "Juicy beef burger", 5.99, "url_to_image2"));
+        mDatabase.child("managers").child("managerObject1").child("menu").push().setValue(new Dish("Pasta", "Main Course", "Creamy Alfredo pasta", 7.99, "url_to_image3"));
+
+
         //initializing the shared preferences getter and setter
         SharedPreferences prefs = getSharedPreferences(SharedPrefsFile, MODE_PRIVATE);//private is mandatory so the file is overwritten on writing
         SharedPreferences.Editor editor = prefs.edit();

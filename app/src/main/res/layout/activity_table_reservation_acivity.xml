@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TableReservationAcivity"
+    android:background="@drawable/bg">
+    <LinearLayout
+        android:layout_marginTop="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Table Reservation "
+            android:background="@drawable/inputbg"
+            android:padding="15dp"
+            android:textColor="@color/darkpink"
+            android:textSize="27dp"
+            android:textStyle="bold"
+            android:layout_margin="15dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="50dp"
+                    android:text="Date:"
+                    android:textColor="@color/darkpink"
+                    android:textSize="27dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="162dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="50dp"
+                    android:background="@drawable/inputbg"
+                    android:drawableLeft="@drawable/reservations"
+                    android:drawablePadding="15dp"
+                    android:paddingLeft="15dp"
+                    android:text="Set date "
+                    android:textColor="@color/darkpink"
+                    android:textSize="27dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="51dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="Starting Time"
+                    android:textColor="@color/darkpink"
+                    android:textSize="27dp"
+                    android:layout_marginTop="15dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Set hour"
+                    android:id="@+id/starthour"
+                    android:paddingRight="25dp"
+                    android:paddingLeft="25dp"
+                    android:layout_marginLeft="35dp"
+                    android:background="@drawable/inputbg"
+                    android:textSize="27dp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/darkpink"
+                    android:drawableLeft="@drawable/hour"
+                    android:drawablePadding="15dp"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ending Time"
+                    android:textColor="@color/darkpink"
+                    android:textSize="27dp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Set hour"
+                    android:id="@+id/endhour"
+                    android:layout_marginLeft="50dp"
+                    android:background="@drawable/inputbg"
+                    android:textSize="27dp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/darkpink"
+                    android:paddingLeft="25dp"
+                    android:paddingRight="25dp"
+                    android:drawableLeft="@drawable/hour"
+                    android:drawablePadding="15dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="109dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="50dp"
+                    android:text="people"
+                    android:textColor="@color/darkpink"
+                    android:textSize="27dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/NbrPeople"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="50dp"
+                    android:background="@drawable/inputbg"
+                    android:drawableLeft="@drawable/profile"
+                    android:drawablePadding="15dp"
+                    android:paddingLeft="15dp"
+                    android:text="Number of people"
+                    android:textColor="@color/darkpink"
+                    android:textSize="27dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttonbg"
+            android:text="Next"
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="80dp"
+            android:textColor="@color/beige"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -29,7 +29,7 @@
         private SearchView searchView;
         private RecyclerView recyclerView;
         public ArrayList<ManagerClass> foundRestaurantsList = new ArrayList<>();
-        public fdRestaurantsRecyclerViewAdapter adapter;
+        private fdRestaurantsRecyclerViewAdapter adapter;
 
         private static final String ARG_PARAM1 = "param1";
         private static final String ARG_PARAM2 = "param2";

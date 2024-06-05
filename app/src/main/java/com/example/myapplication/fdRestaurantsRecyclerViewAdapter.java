@@ -33,7 +33,7 @@ public class fdRestaurantsRecyclerViewAdapter extends RecyclerView.Adapter<fdRes
     public fdRestaurantsRecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     //here we have to inflate the layouts
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.custom_dish_layout,parent,false);
+        View view = inflater.inflate(R.layout.restaurant_item_cardview,parent,false);
 
 
 
@@ -75,10 +75,10 @@ public class fdRestaurantsRecyclerViewAdapter extends RecyclerView.Adapter<fdRes
 
             //here we initialize all the desired views in the cardView
 
-            restaurantName = itemView.findViewById(R.id.dishNameCv);
-            rating = itemView.findViewById(R.id.dishPriceCv);
-            streetName = itemView.findViewById(R.id.dishCategoryCv);
-            restaurantImage = itemView.findViewById(R.id.dishImage);
+            restaurantName = itemView.findViewById(R.id.text_title);
+            rating = itemView.findViewById(R.id.text_rating);
+            streetName = itemView.findViewById(R.id.text_subtitle);
+            restaurantImage = itemView.findViewById(R.id.image_logo);
 
             //here is the cardWidget
 
