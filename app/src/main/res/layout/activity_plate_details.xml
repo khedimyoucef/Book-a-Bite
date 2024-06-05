@@ -50,6 +50,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/buttonbg"
             android:text="-"
+            android:id="@+id/minusBtn"
             android:textColor="@color/beige"
             android:textSize="30dp"
             android:textStyle="bold" />
@@ -63,14 +64,16 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:text="1"
-            android:textSize="45dp" />
+            android:id="@+id/plateNbrTv"
+            android:textColor="@color/darkpink"
+            android:textSize="35dp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/buttonbg"
             android:text="+"
-
+            android:id="@+id/plusBtn"
             android:textColor="@color/beige"
             android:textSize="30dp"
             android:textStyle="bold" />
@@ -98,6 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="70"
+            android:id="@+id/mealPriceTv"
             android:textSize="30dp"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="155dp"
@@ -129,6 +133,7 @@
             android:background="@drawable/buttonbg"
             android:padding="15dp"
             android:text="Keep ordering"
+            android:id="@+id/keepOrderBtn"
             android:textColor="@color/beige"
             android:textSize="18dp"
             android:textStyle="bold" />
@@ -138,6 +143,7 @@
             android:layout_height="60dp"
             android:background="@drawable/buttonbg"
             android:padding="15dp"
+            android:id="@+id/thatsItBtn"
             android:text="That's it"
             android:textColor="@color/beige"
             android:textSize="18dp"
