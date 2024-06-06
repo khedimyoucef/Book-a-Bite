@@ -1,12 +1,8 @@
 package com.example.myapplication;
 
 import static android.content.ContentValues.TAG;
-
 import static com.example.myapplication.SplashScreenActivity.CLIENT_KEY;
 import static com.example.myapplication.SplashScreenActivity.SharedPrefsFile;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,6 +15,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -144,7 +143,7 @@ public class RegisterPageActivity extends AppCompatActivity {
                                                         ClientClass clientObject = new ClientClass(username, email,phoneNumber,password,user.getUid());//here we create a new client object using its constructor to pass it to the database
                                                         mDatabase.child("clients").child(clientObject.getUserId()).setValue(clientObject);
                                                     }else {//the user is a manager therefore we add it to a separate mangers collection
-                                                        ManagerClass managerObject = new ManagerClass(username,email,phoneNumber,password,user.getUid());
+                                                        ManagerClass managerObject = new ManagerClass(username,email,phoneNumber,password,user.getUid(),true);
                                                         mDatabase.child("managers").child(managerObject.getUserId()).setValue(managerObject);
                                                     }
 
@@ -171,7 +170,7 @@ public class RegisterPageActivity extends AppCompatActivity {
                                         progressBar.setVisibility(View.GONE);
                                         // Other authentication failures, display a generic message
                                         Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                        Toast.makeText(RegisterPageActivity.this, "Authentication failed : wrong email.",
+                                        Toast.makeText(RegisterPageActivity.this, "Authentication failed : wrong credentials.",
                                                 Toast.LENGTH_SHORT).show();
                                     }
                                 }

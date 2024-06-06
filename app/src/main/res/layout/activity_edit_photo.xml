@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back_ground"
+    tools:context=".EditPhoto">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:fontFamily="@font/vintage_rovery"
+        android:text="Edit your logo photo here"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/restraunt_default_picture"
+        android:layout_width="163dp"
+        android:layout_height="155dp"
+        android:layout_marginTop="164dp"
+        android:background="@color/white"
+        android:src="@drawable/upload_restraunt_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/circular"
+        app:strokeColor="#49243E"
+        app:strokeWidth="2dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_picture_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/bg_base_color2"
+        android:clickable="true"
+
+        android:tint="#653844"
+        app:layout_constraintBottom_toBottomOf="@+id/restraunt_default_picture"
+        app:layout_constraintEnd_toEndOf="@+id/restraunt_default_picture"
+        app:srcCompat="@drawable/camera_alt_1_svgrepo_com" />
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/restraunt_default_picture"
+        app:layout_constraintVertical_bias="0.302">
+
+
+
+
+        <Spinner
+            android:id="@+id/wilayasSp"
+
+            android:layout_width="324dp"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/style_spinner_2"
+            android:elevation="10dp" />
+
+        <EditText
+            android:id="@+id/streetNameEt"
+            android:fontFamily="@font/vintage_rovery"
+            android:layout_width="324dp"
+            android:layout_height="54dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/edit_text_field"
+            android:elevation="10dp"
+            android:hint="Enter your street name"
+            android:paddingVertical="10dp"
+            android:paddingLeft="20dp"
+
+            android:paddingRight="20dp"
+
+            android:textSize="18dp" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/doneBtnTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="178dp"
+        android:layout_marginEnd="177dp"
+        android:layout_marginBottom="64dp"
+        android:background="@drawable/custom_tv"
+        android:padding="13dp"
+        android:text="Done"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.518"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

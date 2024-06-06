@@ -5,14 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back_ground"
-    tools:context=".RestaurantCheckInActivity">
+    tools:context=".RestrauntCheckInActivity">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
-        android:text="Add your photo here"
+        android:fontFamily="@font/vintage_rovery"
+        android:text="Add your logo photo here"
         android:textSize="25dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,13 +21,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/restaurantPicture"
+        android:id="@+id/restraunt_default_picture"
         android:layout_width="163dp"
-        android:layout_height="163dp"
-        android:layout_marginTop="140dp"
+        android:layout_height="155dp"
+        android:layout_marginTop="156dp"
         android:background="@color/white"
         android:src="@drawable/upload_restraunt_logo"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.463"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/circular"
@@ -41,8 +43,8 @@
         android:clickable="true"
 
         android:tint="#653844"
-        app:layout_constraintBottom_toBottomOf="@+id/restaurantPicture"
-        app:layout_constraintEnd_toEndOf="@+id/restaurantPicture"
+        app:layout_constraintBottom_toBottomOf="@+id/restraunt_default_picture"
+        app:layout_constraintEnd_toEndOf="@+id/restraunt_default_picture"
         app:srcCompat="@drawable/camera_alt_1_svgrepo_com" />
 
     <LinearLayout
@@ -53,49 +55,37 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/restaurantPicture"
-        app:layout_constraintVertical_bias="0.599">
+        app:layout_constraintTop_toBottomOf="@+id/restraunt_default_picture"
+        app:layout_constraintVertical_bias="0.302">
 
         <EditText
-            android:id="@+id/restaurantNameEt"
+            android:id="@+id/restrauntNameEt"
+            android:fontFamily="@font/vintage_rovery"
             android:layout_width="324dp"
             android:layout_height="54dp"
             android:layout_gravity="center"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="30dp"
             android:background="@drawable/edit_text_field"
             android:elevation="10dp"
-            android:fontFamily="@font/vintage_rovery"
             android:hint="Enter your restraunt name"
             android:paddingVertical="10dp"
             android:paddingLeft="20dp"
 
             android:paddingRight="20dp"
 
-            android:textSize="18dp"
-           />
+            android:textSize="18dp" />
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="54dp"
+        <Spinner
+            android:id="@+id/wilayasSp"
+
+            android:layout_width="324dp"
+            android:layout_height="50dp"
             android:layout_margin="10dp"
-            android:id="@+id/scrollView"
-            android:fillViewport="true"
-            app:layout_constraintTop_toBottomOf="@+id/streetNameEt"
-            app:layout_constraintStart_toStartOf="@+id/streetNameEt"
-            app:layout_constraintEnd_toEndOf="@+id/streetNameEt">
-
-            <Spinner
-
-                android:id="@+id/wilayasSp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/style_spinner_2"
-                android:elevation="10dp" />
-
-        </ScrollView>
+            android:background="@drawable/style_spinner_2"
+            android:elevation="10dp" />
 
         <EditText
             android:id="@+id/streetNameEt"
@@ -103,7 +93,7 @@
             android:layout_width="324dp"
             android:layout_height="54dp"
             android:layout_gravity="center"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="30dp"
             android:background="@drawable/edit_text_field"
             android:elevation="10dp"
@@ -115,45 +105,13 @@
 
             android:textSize="18dp" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/detectLocationBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
-            android:background="@drawable/seperator_btn"
-            android:padding="15dp"
-            android:text="Detect location"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.477"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-
-        <TextView
-            android:id="@+id/addressText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="TextView"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
 
     </LinearLayout>
-
-    <Button
+    <TextView
 
         android:id="@+id/nextButtonTv"
         android:fontFamily="@font/vintage_rovery"
-        android:layout_width="120dp"
+        android:layout_width="80dp"
         android:layout_height="45dp"
         android:gravity="center"
         android:paddingStart="20dp"

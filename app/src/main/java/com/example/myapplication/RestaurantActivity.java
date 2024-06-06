@@ -1,7 +1,5 @@
 package com.example.myapplication;
 
-import static android.content.ContentValues.TAG;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,10 +18,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class RestaurantActivity extends AppCompatActivity {
     Button mealsFragmentbtn,reviewFragmentbtn;
@@ -93,7 +87,7 @@ public class RestaurantActivity extends AppCompatActivity {
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-
+                                Toast.makeText(RestaurantActivity.this,"added to favorites",Toast.LENGTH_SHORT).show();
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {

@@ -1,169 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TableReservationAcivity"
-    android:background="@drawable/bg">
-    <LinearLayout
-        android:layout_marginTop="100dp"
-        android:layout_width="match_parent"
+    android:background="@drawable/bg"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Table Reservation "
-            android:background="@drawable/inputbg"
-            android:padding="15dp"
-            android:textColor="@color/darkpink"
-            android:textSize="27dp"
-            android:textStyle="bold"
-            android:layout_margin="15dp"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+        android:text="Table Reservation"
+        android:background="@drawable/inputbg"
+        android:padding="15dp"
+        android:textColor="@color/darkpink"
+        android:textSize="27sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="100dp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="50dp"
-                    android:text="Date:"
-                    android:textColor="@color/darkpink"
-                    android:textSize="27dp"
-                    android:textStyle="bold" />
+    <TextView
+        android:id="@+id/label_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date:"
+        android:textColor="@color/darkpink"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
 
-                <TextView
-                    android:id="@+id/date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="50dp"
-                    android:background="@drawable/inputbg"
-                    android:drawableLeft="@drawable/reservations"
-                    android:drawablePadding="15dp"
-                    android:paddingLeft="15dp"
-                    android:text="Set date "
-                    android:textColor="@color/darkpink"
-                    android:textSize="27dp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/inputbg"
+        android:drawableLeft="@drawable/reservations"
+        android:drawablePadding="15dp"
+        android:padding="8dp"
+        android:text="Set date"
+        android:textColor="@color/darkpink"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/label_date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="51dp"
-                android:orientation="horizontal">
+    <TextView
+        android:id="@+id/label_start_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Starting Time"
+        android:textColor="@color/darkpink"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:text="Starting Time"
-                    android:textColor="@color/darkpink"
-                    android:textSize="27dp"
-                    android:layout_marginTop="15dp"
-                    android:textStyle="bold" />
+    <TextView
+        android:id="@+id/starthour"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/inputbg"
+        android:drawableLeft="@drawable/hour"
+        android:drawablePadding="15dp"
+        android:padding="8dp"
+        android:text="Set hour"
+        android:textColor="@color/darkpink"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/label_start_time"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Set hour"
-                    android:id="@+id/starthour"
-                    android:paddingRight="25dp"
-                    android:paddingLeft="25dp"
-                    android:layout_marginLeft="35dp"
-                    android:background="@drawable/inputbg"
-                    android:textSize="27dp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="15dp"
-                    android:textColor="@color/darkpink"
-                    android:drawableLeft="@drawable/hour"
-                    android:drawablePadding="15dp"
-                    />
+    <TextView
+        android:id="@+id/label_end_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ending Time"
+        android:textColor="@color/darkpink"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/starthour"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
 
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ending Time"
-                    android:textColor="@color/darkpink"
-                    android:textSize="27dp"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="15dp"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Set hour"
-                    android:id="@+id/endhour"
-                    android:layout_marginLeft="50dp"
-                    android:background="@drawable/inputbg"
-                    android:textSize="27dp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="15dp"
-                    android:textColor="@color/darkpink"
-                    android:paddingLeft="25dp"
-                    android:paddingRight="25dp"
-                    android:drawableLeft="@drawable/hour"
-                    android:drawablePadding="15dp"
-                    />
+    <TextView
+        android:id="@+id/endhour"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/inputbg"
+        android:drawableLeft="@drawable/hour"
+        android:drawablePadding="15dp"
+        android:padding="8dp"
+        android:text="Set hour"
+        android:textColor="@color/darkpink"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/label_end_time"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
 
-            </LinearLayout>
+    <TextView
+        android:id="@+id/label_people"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="People"
+        android:textColor="@color/darkpink"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/endhour"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="109dp"
-                android:orientation="horizontal">
+    <EditText
+        android:id="@+id/reservedSeats"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/inputbg"
+        android:drawableLeft="@drawable/profile"
+        android:drawablePadding="15dp"
+        android:padding="8dp"
+        android:hint="Number of people"
+        android:textColor="@color/darkpink"
+        android:textSize="18sp"
+        android:inputType="number"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/label_people"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="50dp"
-                    android:text="people"
-                    android:textColor="@color/darkpink"
-                    android:textSize="27dp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/reservedSeats"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="50dp"
-                    android:background="@drawable/inputbg"
-                    android:drawableLeft="@drawable/profile"
-                    android:drawablePadding="15dp"
-                    android:paddingLeft="15dp"
-                    android:hint="Number of people"
-                    android:textColor="@color/darkpink"
-                    android:textSize="27dp"
-                    android:inputType="number"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/nextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/buttonbg"
-            android:text="Next"
-            android:layout_marginLeft="300dp"
-            android:layout_marginTop="80dp"
-            android:textColor="@color/beige"/>
-
-    </LinearLayout>
-
-
-</LinearLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/nextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttonbg"
+        android:text="Next"
+        android:textColor="@color/beige"
+        app:layout_constraintTop_toBottomOf="@+id/reservedSeats"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

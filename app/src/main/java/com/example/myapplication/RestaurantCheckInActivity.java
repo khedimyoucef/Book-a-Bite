@@ -2,75 +2,60 @@
 package com.example.myapplication;
 
 
+import static android.content.ContentValues.TAG;
 
-import static com.example.myapplication.PublicData.googleMap;
-
+import android.Manifest;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentSender;
+import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.content.Intent;
-import android.view.View;
-import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
-
-import androidx.annotation.Nullable;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.github.dhaval2404.imagepicker.ImagePicker;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationSettingsStatusCodes;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.libraries.places.api.model.Place;
-import com.google.android.libraries.places.widget.Autocomplete;
-import com.google.android.libraries.places.widget.AutocompleteActivity;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import androidx.annotation.NonNull;
-
-import androidx.core.app.ActivityCompat;
-
-
-import android.Manifest;
-import android.app.Activity;
-import android.content.Context;
-
-import android.content.IntentSender;
-import android.content.pm.PackageManager;
-
-
-
-import android.os.Looper;
-
-
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.LocationCallback;
-
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
-
+import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.Firebase;
-import com.google.firebase.FirebaseApp;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class RestaurantCheckInActivity extends AppCompatActivity {
@@ -84,10 +69,14 @@ public class RestaurantCheckInActivity extends AppCompatActivity {
 
     //for the location detection
     private TextView AddressText;
+    private Uri currentUri;
 
-    private EditText restaurantName;
-    private Button LocationButton;
+    private EditText restaurantNameEt,streetNameEt;
+    private Button LocationButton,nextBtn;
+    private String streetName,restaurantName,wilaya;
+
     private LocationRequest locationRequest;
+    Spinner wilayasSp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,12 +84,98 @@ public class RestaurantCheckInActivity extends AppCompatActivity {
         // Set layout flags to force display over the notch (it has to be declared in the onCreate before setting the content view
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         setContentView(R.layout.activity_restaurant_check_in);
-        getCurrentLocation();
+        wilayasSp =findViewById(R.id.wilayasSp);
+        nextBtn = findViewById(R.id.nextButtonTv);
+
+        //the wilayas:
+        String[] wilayas = {
+                "1. Adrar",
+                "2. Chlef",
+                "3. Laghouat",
+                "4. Oum El Bouaghi",
+                "5. Batna",
+                "6. Béjaïa",
+                "7. Biskra",
+                "8. Béchar",
+                "9. Blida",
+                "10. Bouira",
+                "11. Tamanrasset",
+                "12. Tébessa",
+                "13. Tlemcen",
+                "14. Tiaret",
+                "15. Tizi Ouzou",
+                "16. Alger",
+                "17. Djelfa",
+                "18. Jijel",
+                "19. Sétif",
+                "20. Saïda",
+                "21. Skikda",
+                "22. Sidi Bel Abbès",
+                "23. Annaba",
+                "24. Guelma",
+                "25. Constantine",
+                "26. Médéa",
+                "27. Mostaganem",
+                "28. M'Sila",
+                "29. Mascara",
+                "30. Ouargla",
+                "31. Oran",
+                "32. El Bayadh",
+                "33. Illizi",
+                "34. Bordj Bou Arréridj",
+                "35. Boumerdès",
+                "36. El Tarf",
+                "37. Tindouf",
+                "38. Tissemsilt",
+                "39. El Oued",
+                "40. Khenchela",
+                "41. Souk Ahras",
+                "42. Tipaza",
+                "43. Mila",
+                "44. Aïn Defla",
+                "45. Naâma",
+                "46. Aïn Témouchent",
+                "47. Ghardaïa",
+                "48. Relizane",
+                "49. Timimoun",
+                "50. Bordj Badji Mokhtar",
+                "51. Ouled Djellal",
+                "52. Béni Abbès",
+                "53. In Salah",
+                "54. In Guezzam",
+                "55. Touggourt",
+                "56. Djanet",
+                "57. El M'Ghair",
+                "58. El Meniaa"
+        };
+        //fill the spinner:
+        ArrayList<String> arrayList=new ArrayList<>(Arrays.asList(wilayas));
+        ArrayAdapter<String> arrayAdapter=new ArrayAdapter<>(getBaseContext(),R.layout.spinner_text_style,arrayList);
+        wilayasSp.setAdapter(arrayAdapter);
+        /////// pick the wilaya of the restraunt:
+        wilayasSp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // Retrieve the selected wilaya when an item is selected
+                wilaya =  parentView.getItemAtPosition(position).toString();
+                // Do something with the selected wilaya
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Do nothing when nothing is selected
+            }
+        });
+
+
+
+
+
 
         //here we get the reference to upload images or files to our storage bucket in firestore
 
         storageReference = FirebaseStorage.getInstance().getReference();
-        restaurantName = findViewById(R.id.restrauntNameEt);
+
 
 
         //TODO :  assign the proper restaurant name to the currently signed in user by matching the userId and passing it's restaurantName as a child node after the user clicks the locate button
@@ -133,6 +208,7 @@ public class RestaurantCheckInActivity extends AppCompatActivity {
         locationRequest.setInterval(5000);
         locationRequest.setFastestInterval(2000);
 
+        /*
 
         LocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,6 +251,94 @@ public class RestaurantCheckInActivity extends AppCompatActivity {
         });
 
 
+         */
+
+
+
+        streetNameEt = findViewById(R.id.streetNameEt);
+        restaurantNameEt = findViewById(R.id.restaurantNameEt);
+
+        nextBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                streetName = streetNameEt.getText().toString();
+                restaurantName = restaurantNameEt.getText().toString();
+                if ( restaurantName.isEmpty() )
+                    Toast.makeText(RestaurantCheckInActivity.this,"Provide the restaurant name first !", Toast.LENGTH_SHORT).show();
+                else if (wilaya.isEmpty()) {
+                    Toast.makeText(RestaurantCheckInActivity.this,"enter your wilaya first !", Toast.LENGTH_SHORT).show();
+                }
+                    else if (streetName.isEmpty()){
+                    Toast.makeText(RestaurantCheckInActivity.this,"Provide the street name first !", Toast.LENGTH_SHORT).show();
+
+                }else if(currentUri == null){
+                    Toast.makeText(RestaurantCheckInActivity.this,"Please select an image first !", Toast.LENGTH_SHORT).show();
+                }
+                else {
+
+
+                    // Get the FirebaseAuth instance
+                    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+// Check if a user is currently signed in
+                    FirebaseUser currentUser = mAuth.getCurrentUser();
+
+
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("managers").child(currentUser.getUid());
+                    databaseReference.child("wilaya").setValue(wilaya)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    // Data successfully written
+                                    Log.d(TAG, "Data written successfully!");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    // Error occurred while writing data
+                                    Log.e(TAG, "Error writing data to Firebase: " + e.getMessage());
+                                }
+                            });
+                    databaseReference.child("streetName").setValue(streetName)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    // Data successfully written
+                                    Log.d(TAG, "Data written successfully!");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    // Error occurred while writing data
+                                    Log.e(TAG, "Error writing data to Firebase: " + e.getMessage());
+                                }
+                            });
+
+                    databaseReference.child("restaurantName").setValue(restaurantName)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    // Data successfully written
+                                    Log.d(TAG, "Data written successfully!");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    // Error occurred while writing data
+                                    Log.e(TAG, "Error writing data to Firebase: " + e.getMessage());
+                                }
+                            });
+                    Intent intent = new Intent(RestaurantCheckInActivity.this, TimeTbaleRestrauntInput.class);
+                    startActivity(intent);
+                    //finish();
+                }
+            }
+        });
+
     }
 
     @Override
@@ -182,11 +346,11 @@ public class RestaurantCheckInActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == ImagePicker.REQUEST_CODE && resultCode == RESULT_OK && data != null) {
-            Uri uri = data.getData();
-            imageView.setImageURI(uri); // Setting the image in the current activity temporarily
+             currentUri = data.getData();
+            imageView.setImageURI(currentUri); // Setting the image in the current activity temporarily
 
             // The logo photos are stored in a subfolder called Logos in my Firestore storage bucket
-            storageReference.child("Logos").child("testName").putFile(uri)
+            storageReference.child("Logos").child("testName").putFile(currentUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -250,10 +414,10 @@ public class RestaurantCheckInActivity extends AppCompatActivity {
 
         if (requestCode == 1) {
                 // Handle image picker result
-                Uri uri = null;
+                currentUri currentUri = null;
                 if (data != null) {
-                    uri = data.getData();
-                    imageView.setImageURI(uri);
+                    currentUri = data.getData();
+                    imageView.setImageURI(currentUri);
                     // TODO: Upload the image to the database
                 }
                 else{

@@ -55,10 +55,7 @@
             android:exported="true"
             android:screenOrientation="portrait"/>
 
-        <activity
-            android:name=".AccountActivity"
-            android:exported="true"
-            android:screenOrientation="portrait" />
+
             <activity
                 android:name=".LoginActivity"
                 android:exported="true"
@@ -93,6 +90,9 @@
         <activity android:name=".SummaryActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
+        <activity android:name=".RestrauntMain"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".restaurantHome"
@@ -103,7 +103,13 @@
             android:name=".PlateDetails"
             android:exported="true"
             android:screenOrientation="portrait" />
+        <activity android:name=".RestrauntCheckInActivity"
 
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity android:name=".TimeTbaleRestrauntInput"
+            android:exported="true"
+            android:screenOrientation="portrait" />
 
             <!--google api key -->
             <meta-data android:name="com.google.android.geo.API_KEY"

@@ -1,26 +1,32 @@
 package com.example.myapplication;
 
 
-import android.content.Intent;
+import static android.content.ContentValues.TAG;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
 
 public static final String SharedPrefsFile = "SharedPrefsFile";
 public static final String CLIENT_KEY = "isClient";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -168,9 +174,9 @@ mDatabase.child("managers").child("managerObject9").setValue(managerObject9);
                 if (firstRun) {
                     // App is being run for the first time implies no user is signed in
 
-                        Intent intent = new Intent(SplashScreenActivity.this, SeparatorActivity.class);
-                        startActivity(intent);
-                        finish();
+                    Intent intent = new Intent(SplashScreenActivity.this, SeparatorActivity.class);
+                    startActivity(intent);
+                    finish();
 
                     // Update SharedPreferences to indicate that the app has been launched
                     editor.putBoolean("isFirstRun", false);
@@ -180,22 +186,55 @@ mDatabase.child("managers").child("managerObject9").setValue(managerObject9);
                     // Perform regular initialization tasks here
                     boolean isClient = prefs.getBoolean(CLIENT_KEY, true); // 0 is the default value if "IS_CLIENT-KEY : isClient" doesn't exist
                     if (user != null) {
-                        if (isClient){// the user is a client
-                            Intent intent = new Intent( SplashScreenActivity.this, MainActivity.class);
+                        if (isClient) {// the user is a client
+                            Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
                             startActivity(intent); // Start LoginActivity
                             finish();
-                        }else if(!(isClient)) {//the user is a manager
-                            Intent intent = new Intent(SplashScreenActivity.this, RestaurantCheckInActivity.class);
-                            startActivity(intent); // Start LoginActivity
-                            finish();
+                        } else if (!(isClient)) {//the user is a manager
+
+                            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("managers").child(user.getUid()).child("newUser");
+
+                            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    // This method will be called once with the value from the database.
+                                    Boolean newUser = dataSnapshot.getValue(Boolean.class);
+                                    if(newUser == null){
+                                        Toast.makeText(SplashScreenActivity.this,"error",Toast.LENGTH_SHORT).show();
+                                    }
+                                    else {
+                                         // Convert Boolean to boolean
+                                        if (!newUser) {
+                                            Intent intent = new Intent(SplashScreenActivity.this, RestrauntMain.class);
+                                            startActivity(intent); // Start LoginActivity
+                                            finish();
+                                        } else {
+                                            Intent intent = new Intent(SplashScreenActivity.this, RestaurantCheckInActivity.class);
+                                            startActivity(intent); // Start LoginActivity
+                                            finish();
+
+                                        }
+                                    }
+                                }
+
+
+                                @Override
+                                public void onCancelled(DatabaseError error) {
+                                    // Failed to read value
+                                    Log.w(TAG, "Failed to read value.", error.toException());
+                                }
+                            });
+
+
                         }
-                    }else {
+                    } else {
                         // skipping separator activity and running LoginActivity directly
                         Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
                         startActivity(intent); // Start LoginActivity
                         finish(); // Finish SplashScreenActivity to prevent returning to it when pressing back button
                     }
                 }
+
 
 
             }

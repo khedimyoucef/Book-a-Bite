@@ -22,7 +22,11 @@ public class Order {
 
     }
 
-    public Order(String clientId, String clientName, int reservedSeats, int startHour, int startMinute, int endHour, int endMinute,int day,int month) {
+    public void setOrderedItemsList(ArrayList<OrderItem> orderedItemsList) {
+        this.orderedItemsList = orderedItemsList;
+    }
+
+    public Order(String clientId, String clientName, int reservedSeats, int startHour, int startMinute, int endHour, int endMinute, int day, int month) {
         this.clientId = clientId;
         this.clientName = clientName;
         this.reservedSeats = reservedSeats;

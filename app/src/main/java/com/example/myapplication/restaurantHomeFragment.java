@@ -1,15 +1,18 @@
 package com.example.myapplication;
 
-import static android.content.ContentValues.TAG;
-
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,44 +27,64 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class restaurantHome extends AppCompatActivity implements dishRecyclerViewInterface{
+public class restaurantHomeFragment extends Fragment implements dishRecyclerViewInterface {
+    private static final String TAG = "restaurantHomeFragment";
     private TextView restrauntNameTv;
     private ImageView restrauntPictureIv;
     private RecyclerView menuRecyclerView;
-    public ArrayList<Dish> receivedDishesList = new ArrayList<>();
-    public restaurantMenuRecyclerViewAdapter adapter;
-
+    private ArrayList<Dish> receivedDishesList = new ArrayList<>();
+    private restaurantMenuRecyclerViewAdapter adapter;
     private SearchView searchView;
+    private View view;
+
+    public restaurantHomeFragment() {
+    }
+
+    public static restaurantHomeFragment newInstance() {
+        return new restaurantHomeFragment();
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.fragment_restaurant_home, container, false);
+        restrauntPictureIv = view.findViewById(R.id.restrauntPictureIv);
+        restrauntNameTv = view.findViewById(R.id.restrauntNameTv);
+        menuRecyclerView = view.findViewById(R.id.menuRv);
+        searchView = view.findViewById(R.id.searchView);
+
+
+        return view;
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        setContentView(R.layout.activity_restaurant_home);
-
-        restrauntPictureIv=findViewById(R.id.restrauntPictureIv);
-        restrauntNameTv=findViewById(R.id.restrauntNameTv);
-        menuRecyclerView=findViewById(R.id.menuRv);
-        searchView = findViewById(R.id.searchView);
+        Log.d(TAG, "onViewCreated: View is ready");
 
 
         // Initialize Firebase Authentication
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
-// Get the current user
+        // Get the current user
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
+        if (currentUser == null) {
+            Log.e(TAG, "onViewCreated: User not logged in");
+            return;
+        }
 
-
-
+        Log.d(TAG, "onViewCreated: User logged in with UID: " + currentUser.getUid());
 
         // Get a reference to your database
         DatabaseReference databaseRef1 = FirebaseDatabase.getInstance().getReference().child("managers");
 
-// Attach a ValueEventListener to the reference
+        // Attach a ValueEventListener to the reference
         databaseRef1.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Log.d(TAG, "onDataChange: Data snapshot received");
                 // This method is called once with the initial value and again whenever data at this location is updated.
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     // Loop through each child node in the collection
@@ -69,71 +92,39 @@ public class restaurantHome extends AppCompatActivity implements dishRecyclerVie
 
                     ManagerClass signedInManager = snapshot.getValue(ManagerClass.class); // Parse the data into your custom class
 
-                    if(signedInManager.getUserId() == currentUser.getUid()) {
-
+                    if (signedInManager != null && signedInManager.getUserId().equals(currentUser.getUid())) {
                         restrauntNameTv.setText(signedInManager.getUsername());
                         Picasso.get().load("https://picsum.photos/id/237/200/300").into(restrauntPictureIv);
                     }
-
                 }
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
                 // This method will be triggered in case of any error
                 Log.e(TAG, "Error fetching data", databaseError.toException());
             }
         });
 
-
-
-
-
-
-
-
-
-
         //TODO : replace .child("managerObject1"); with the proper current signed in manager id
         DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference().child("managers").child(currentUser.getUid()).child("menu");
         databaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Log.d(TAG, "onDataChange: Menu data snapshot received");
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Dish data = snapshot.getValue(Dish.class);
                     receivedDishesList.add(data);
                 }
 
-
-                    /*
-                    // Add spacing decorator
-                    SpacingItemDecorator itemDecorator = new SpacingItemDecorator(10); // 10px spacing
-                    recyclerView.addItemDecoration(itemDecorator);
-                    recyclerView.setPadding(0, 10, 0, 0); // Set padding to 0
-                    recyclerView.setClipToPadding(false); // Adjust clipToPadding
-
-                    */
-
                 // Set the Layout Manager
-                menuRecyclerView.setLayoutManager(new LinearLayoutManager(restaurantHome.this));
-                adapter = new restaurantMenuRecyclerViewAdapter(restaurantHome.this, receivedDishesList, restaurantHome.this);
+                menuRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+                adapter = new restaurantMenuRecyclerViewAdapter(requireContext(), receivedDishesList, restaurantHomeFragment.this);
                 menuRecyclerView.setAdapter(adapter);
-
-
-
-                //for a horizontal recyclerview we can use :
-                    /*
-                    RecyclerView recyclerView = findViewById(R.id.horizontal_recycler_view);
-                    LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-                    recyclerView.setLayoutManager(layoutManager);
-                    */
-
-
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.e(TAG, "Error retrieving data", databaseError.toException());
             }
         });
@@ -151,10 +142,7 @@ public class restaurantHome extends AppCompatActivity implements dishRecyclerVie
             }
         });
 
-
     }
-
-
 
     private void filterList(String text) {
         ArrayList<Dish> filteredList = new ArrayList<>();
@@ -165,11 +153,12 @@ public class restaurantHome extends AppCompatActivity implements dishRecyclerVie
         }
 
         if (filteredList.isEmpty() && text.isEmpty()) {
-            Toast.makeText(restaurantHome.this, "no matching items found", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "No matching items found", Toast.LENGTH_SHORT).show();
         } else {
             adapter.setFilteredList(filteredList);
         }
     }
+
     @Override
     public void onItemClicked(Dish dishObject) {
         //handle click events

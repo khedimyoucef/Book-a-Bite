@@ -27,6 +27,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -67,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
         // Set layout flags to force display over the notch (it has to be declared in the onCreate before setting the content view
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         setContentView(R.layout.login_activity);
-        EditText editTextEmail = findViewById(R.id.email_input); 
+        EditText editTextEmail = findViewById(R.id.email_input);
         EditText editTextPassword = findViewById(R.id.password_input);
         Button forgotPassword = findViewById(R.id.forgotPassword);
         SharedPreferences prefs = getSharedPreferences(SharedPrefsFile, MODE_PRIVATE);
@@ -142,9 +147,40 @@ public class LoginActivity extends AppCompatActivity {
                                             startActivity(i);
                                             finish();}
                                         else if (!(prefs.getBoolean(CLIENT_KEY,true))){//launch the manager side
-                                            Intent i = new Intent(LoginActivity.this, RestaurantCheckInActivity.class);
-                                            startActivity(i);
-                                            finish();}
+
+                                            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("managers").child(user.getUid()).child("newUser");
+
+                                            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                                    // This method will be called once with the value from the database.
+                                                    Boolean newUser = dataSnapshot.getValue(Boolean.class);
+                                                    if(newUser == null){
+                                                        Toast.makeText(LoginActivity.this,"error",Toast.LENGTH_SHORT).show();
+                                                    }
+                                                    else {
+                                                        // Convert Boolean to boolean
+                                                        if (!newUser) {
+                                                            Intent intent = new Intent(LoginActivity.this, RestrauntMain.class);
+                                                            startActivity(intent); // Start LoginActivity
+                                                            finish();
+                                                        } else {
+                                                            Intent intent = new Intent(LoginActivity.this, RestaurantCheckInActivity.class);
+                                                            startActivity(intent); // Start LoginActivity
+                                                            finish();
+
+                                                        }
+                                                    }
+                                                }
+
+
+                                                @Override
+                                                public void onCancelled(DatabaseError error) {
+                                                    // Failed to read value
+                                                    Log.w(TAG, "Failed to read value.", error.toException());
+                                                }
+                                            });
+                                            }
                                         }
 
                                     else{

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".restaurantBookingFragment"
+    android:background="@drawable/back_ground">
+
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="9dp"
+                    android:fontFamily="@font/vintage_rovery"
+                    android:text="Book a Bite"
+                    android:textColor="@color/main_font_color"
+                    android:textSize="25dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hey,"
+                    android:textColor="@color/black"
+                    android:textSize="22dp"
+
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/restrauntNameTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:hint="Restraunt name"
+                    android:textColor="@color/second_font_color"
+                    android:textColorHint="@color/second_font_color"
+                    android:textSize="22dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/restrauntPictureIv"
+                android:layout_width="95dp"
+                android:layout_height="95dp"
+                android:layout_marginLeft="35dp"
+
+
+                android:background="@color/white"
+                android:src="@drawable/upload_restraunt_logo"
+
+                app:shapeAppearanceOverlay="@style/circular"
+                app:strokeColor="#49243E"
+                app:strokeWidth="1dp">
+
+            </com.google.android.material.imageview.ShapeableImageView>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+
+      <androidx.recyclerview.widget.RecyclerView
+          android:layout_marginRight="5dp"
+          android:scrollbars="vertical"
+          tools:listitem="@layout/custom_booking_layout"
+          android:id="@+id/bookingRv"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"/>
+        <GridLayout
+            android:id="@+id/gridLayout"
+     android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:columnCount="3"
+            android:rowCount="3"
+android:layout_marginTop="10dp"
+            android:padding="16dp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

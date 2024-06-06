@@ -7,8 +7,67 @@ import java.util.ArrayList;
 public class ManagerClass {
 
     private String email,username,phoneNumber,password,userId,restaurantName;
+
+    private String wilaya,streetName;
+
+    private String openTime,closeTime;
+    // Use @PropertyName to specify the Firebase field name
+
+    private boolean newUser;
+
+
+
+    public boolean newUser() {
+        return newUser;
+    }
+
+    public void setNewUser(boolean newUser) {
+        this.newUser = newUser;
+    }
+
+    public int getNumberOfTables() {
+        return numberOfTables;
+    }
+
+    public void setNumberOfTables(int numberOfTables) {
+        this.numberOfTables = numberOfTables;
+    }
+
+    private int numberOfTables;
+
+    public String getWilaya() {
+        return wilaya;
+    }
+
+    public void setWilaya(String wilaya) {
+        this.wilaya = wilaya;
+    }
+
+    public String getStreetName() {
+        return streetName;
+    }
+
+    public void setStreetName(String streetName) {
+        this.streetName = streetName;
+    }
+
     private Uri logo;
 
+    public String getOpenTime() {
+        return openTime;
+    }
+
+    public void setOpenTime(String openTime) {
+        this.openTime = openTime;
+    }
+
+    public String getCloseTime() {
+        return closeTime;
+    }
+
+    public void setCloseTime(String closeTime) {
+        this.closeTime = closeTime;
+    }
 
     private ArrayList<Dish> dishList;
 
@@ -23,6 +82,15 @@ public class ManagerClass {
         this.phoneNumber = phoneNumber;
 
     }
+    public ManagerClass(String username, String email,String phoneNumber, String password, String userId,boolean newUser) {
+        this.userId = userId;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.newUser = newUser;
+
+    }
     // separate constructer with the logo uri added because the logo is not mandatory to set
     public ManagerClass(String username, String email,String phoneNumber, String password, String userId,Uri logo) {
         this.userId = userId;
@@ -32,6 +100,7 @@ public class ManagerClass {
         this.phoneNumber = phoneNumber;
         this.logo = logo;
     }
+
 
     public String getRestaurantName() {
         return restaurantName;
@@ -50,6 +119,18 @@ public class ManagerClass {
         this.logo = logo;
         this.restaurantName = restaurantName;
     }
+    public ManagerClass(String username, String email, String phoneNumber, String password, String userId, Uri logo, String restaurantName,String wilaya,String streetName) {
+        this.userId = userId;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.logo = logo;
+        this.restaurantName = restaurantName;
+        this.wilaya = wilaya;
+        this.streetName = streetName;
+    }
+
 
     public ManagerClass(String username, String email,String phoneNumber, String password, String userId,String restaurantName) {
         this.userId = userId;

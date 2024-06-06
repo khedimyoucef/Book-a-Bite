@@ -1,9 +1,47 @@
 package com.example.myapplication;
 
+import java.util.ArrayList;
+
 public class ClientClass {
    private String name,email,username,phoneNumber,password,userId;
 
-   public ClientClass(){
+   private ArrayList<Order> bookings = new ArrayList<>();
+
+
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public ArrayList<Order> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(ArrayList<Order> bookings) {
+        this.bookings = bookings;
+    }
+
+    public ClientClass(){
 
    }
 
@@ -36,5 +74,7 @@ public class ClientClass {
     }
 
     public String getPhoneNumber(){return phoneNumber;}
+
+
 }
 
